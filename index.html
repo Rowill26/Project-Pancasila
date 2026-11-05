@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#efe3c8">
+  <meta name="description" content="Babad Surakarta: jurnal investigasi interaktif untuk menyingkap makna warisan budaya Surakarta.">
+  <title>Babad Surakarta: Jejak yang Hilang</title>
+
+  <!-- Tipografi klasik: Cormorant Garamond (judul) + EB Garamond (badan) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (Play CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            perkamen: { DEFAULT: '#f3e9d2', tua: '#e6d5ae', gelap: '#d4bf8f' },
+            tinta:    { DEFAULT: '#2a1f16', pudar: '#5b4636', samar: '#8a7461' },
+            sepia: '#8b5a2b',
+            segel: '#8e2b1d',
+            emas:  '#a3792c',
+            meja:  '#2b2219'
+          },
+          fontFamily: {
+            judul: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            badan: ['"EB Garamond"', 'Georgia', 'serif']
+          },
+          boxShadow: {
+            lembar: '0 1px 0 rgba(255,255,255,.5) inset, 0 12px 32px -12px rgba(60,40,20,.5)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Komponen berulang (diproses oleh Tailwind Play CDN) -->
+  <style type="text/tailwindcss">
+    @layer components {
+      .tombol-utama {
+        @apply inline-flex min-h-[48px] items-center justify-center rounded-sm bg-tinta px-6
+               font-judul text-lg font-semibold tracking-wide text-perkamen shadow
+               transition hover:bg-sepia active:translate-y-px
+               focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-segel
+               disabled:cursor-wait disabled:opacity-60;
+      }
+      .tombol-kedua {
+        @apply inline-flex min-h-[48px] items-center justify-center rounded-sm border border-tinta/70 px-6
+               font-judul text-lg font-semibold tracking-wide text-tinta transition
+               hover:bg-perkamen-tua active:translate-y-px
+               focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-segel;
+      }
+      .kolom {
+        /* text ≥ 16px agar Safari iOS tidak memperbesar halaman saat fokus */
+        @apply w-full rounded-sm border border-sepia/50 bg-[#fbf6ea] px-4 py-3 font-badan text-[17px] text-tinta
+               placeholder:italic placeholder:text-tinta-samar/70
+               focus:border-sepia focus:outline-none focus:ring-2 focus:ring-sepia/30;
+      }
+      .label-kecil {
+        @apply font-judul text-sm font-semibold uppercase tracking-[0.25em] text-sepia;
+      }
+      .stempel {
+        @apply shrink-0 -rotate-6 rounded-sm border-2 px-2 py-0.5 font-judul text-xs font-bold uppercase tracking-[0.2em];
+      }
+      .stempel[data-status="terkunci"]   { @apply border-tinta-samar/60 text-tinta-samar; }
+      .stempel[data-status="terbuka"]    { @apply border-sepia text-sepia; }
+      .stempel[data-status="tersingkap"] { @apply border-segel text-segel; }
+      .lencana-segel {
+        @apply flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-emas
+               bg-segel font-judul text-2xl text-perkamen shadow-md;
+      }
+      .pesan { @apply min-h-[1.5rem] italic text-tinta-pudar; }
+      .pesan[data-nada="berhasil"] { @apply text-[#3f5a2a]; }
+      .pesan[data-nada="gagal"]    { @apply text-segel; }
+    }
+  </style>
+
+  <!-- Efek kertas jurnal: transisi, segel lilin, upacara lencana (Langkah 4) -->
+  <link rel="stylesheet" href="css/jurnal.css">
+
+  <!-- Tekstur kertas dasar -->
+  <style>
+    .tekstur-perkamen {
+      background-color: #f3e9d2;
+      background-image:
+        radial-gradient(circle at 18% 12%, rgba(255,255,255,.55), transparent 45%),
+        radial-gradient(circle at 88% 92%, rgba(139,90,43,.14), transparent 55%),
+        radial-gradient(circle at 50% 50%, transparent 70%, rgba(110,75,40,.10));
+    }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+
+<body class="min-h-screen bg-meja font-badan text-tinta antialiased">
+
+  <!-- ============================================================
+       JURNAL (bingkai utama, mobile-first; di desktop tampil seperti buku)
+       ============================================================ -->
+  <div class="mx-auto min-h-screen max-w-md tekstur-perkamen shadow-lembar sm:my-8 sm:min-h-[85vh] sm:rounded-sm">
+
+    <!-- Kepala jurnal -->
+    <header class="sticky top-0 z-20 flex items-center justify-between border-b border-sepia/30 bg-perkamen/95 px-5 py-3 backdrop-blur">
+      <a href="#/" class="font-judul text-lg font-semibold tracking-wide">Babad Surakarta</a>
+      <nav class="flex items-center gap-1 font-judul text-base" aria-label="Navigasi jurnal">
+        <a href="#/daftar" data-nav="daftar"
+           class="rounded-sm px-3 py-1.5 aria-[current=page]:bg-perkamen-tua aria-[current=page]:font-semibold">Lembar</a>
+        <a href="#/lencana" data-nav="lencana"
+           class="flex items-center gap-1.5 rounded-sm px-3 py-1.5 aria-[current=page]:bg-perkamen-tua aria-[current=page]:font-semibold">
+          Lencana
+          <span id="hitung-lencana" class="inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-segel px-1 text-xs text-perkamen">0</span>
+        </a>
+      </nav>
+    </header>
+
+    <main id="panggung" class="px-5 pb-16 pt-6">
+
+      <!-- ==========================================================
+           VIEW: SAMPUL (prolog)
+           ========================================================== -->
+      <section data-view="sampul" class="flex min-h-[78vh] flex-col items-center justify-center text-center">
+        <p class="text-xs uppercase tracking-[0.35em] text-tinta-samar">Arsip Peninggalan · Surakarta</p>
+        <h1 class="mt-4 font-judul text-5xl font-semibold leading-none outline-none">Babad<br>Surakarta</h1>
+        <p class="mt-3 font-judul text-xl italic text-sepia">Jejak yang Hilang</p>
+        <div class="my-8 h-px w-24 bg-sepia/40" aria-hidden="true"></div>
+
+        <div class="space-y-4 text-left text-[17px] leading-relaxed text-tinta-pudar">
+          <p>Jurnal ini sampai di tanganmu tanpa nama pemilik. Sampulnya lapuk, halamannya nyaris kosong. Hanya satu baris tinta yang tersisa: <em>kebenaran kota ini tidak tersimpan di buku, melainkan pada batu, kayu, dan warna yang masih berdiri.</em></p>
+          <p>Sebagai Peneliti penerusnya, datangilah setiap situs, amati relikuinya dengan saksama, dan catat temuanmu hingga lembar-lembar ini kembali bersuara.</p>
+        </div>
+
+        <a href="#/daftar" class="tombol-utama mt-10 w-full">Buka Jurnal</a>
+        <p class="mt-5 text-sm italic text-tinta-samar">Penelusuran ini memerlukan izin lokasi pada ponselmu.</p>
+      </section>
+
+      <!-- ==========================================================
+           VIEW: DAFTAR LEMBAR (daftar situs)
+           ========================================================== -->
+      <section data-view="daftar" hidden>
+        <p class="label-kecil">Indeks Jurnal</p>
+        <h2 class="mt-1 font-judul text-3xl font-semibold outline-none">Daftar Lembar</h2>
+        <p id="ringkasan-jurnal" class="mt-1 italic text-tinta-samar"></p>
+
+        <p id="peringatan-penyimpanan" hidden
+           class="mt-4 border-l-2 border-segel/60 pl-3 text-sm italic text-segel">
+          Peramban ini menolak menyimpan jurnal secara permanen. Catatanmu akan hilang bila halaman ditutup.
+        </p>
+
+        <ol id="daftar-situs" class="mt-6 space-y-4"></ol>
+
+        <div class="mt-12 border-t border-dashed border-sepia/40 pt-5 text-center">
+          <button id="tombol-hapus-jurnal" type="button"
+                  class="text-sm italic text-tinta-samar underline decoration-dotted underline-offset-4 hover:text-segel">
+            Mulai Ulang Penelusuran
+          </button>
+        </div>
+      </section>
+
+      <!-- ==========================================================
+           VIEW: SITUS (teka-teki aktif)
+           ========================================================== -->
+      <section data-view="situs" hidden>
+        <a href="#/daftar" class="inline-flex min-h-[44px] items-center text-sm text-sepia hover:underline">← Kembali ke Daftar Lembar</a>
+
+        <header class="mt-2">
+          <p id="situs-nomor" class="label-kecil"></p>
+          <h2 id="situs-nama" class="mt-1 font-judul text-3xl font-semibold leading-tight outline-none"></h2>
+          <p id="situs-kawasan" class="mt-1 text-sm text-tinta-samar"></p>
+        </header>
+
+        <!-- Adab berkunjung: selalu tampil, sebelum apa pun -->
+        <aside class="mt-5 border-l-2 border-segel/60 pl-4 text-[15px] italic leading-relaxed text-tinta-pudar">
+          <span class="font-semibold not-italic text-segel">Adab Peneliti.</span>
+          <span id="situs-adab"></span>
+        </aside>
+
+        <!-- ---------- Keadaan: TERKUNCI ---------- -->
+        <div id="blok-terkunci" hidden class="mt-8">
+          <div class="rounded-sm border border-sepia/40 bg-perkamen-tua/50 p-5 text-center shadow-sm">
+            <p class="font-judul text-4xl text-segel" aria-hidden="true">⊛</p>
+            <p class="mt-1 font-judul text-xl font-semibold">Lembar ini masih tersegel</p>
+            <p class="mt-2 text-tinta-pudar">Segel hanya terbuka bagi mereka yang hadir di hadapan situs.</p>
+
+            <button id="tombol-gps" type="button" class="tombol-utama mt-5 w-full">Lacak Jejak Kehadiran</button>
+            <button id="tombol-qr" type="button" class="tombol-kedua mt-3 w-full" aria-controls="form-sandi" aria-expanded="false">Pindai Kode QR</button>
+
+            <a id="tautan-peta" target="_blank" rel="noopener"
+               class="mt-4 inline-flex min-h-[44px] items-center text-sm text-sepia underline decoration-dotted underline-offset-4">
+              Buka arah menuju situs
+            </a>
+          </div>
+
+          <form id="form-sandi" hidden class="mt-5" autocomplete="off">
+            <label for="masukan-sandi" class="block font-judul text-lg font-semibold">Sandi Relikui</label>
+            <p class="text-sm text-tinta-samar">Ketikkan sandi yang tertera di bawah kode QR pada situs.</p>
+            <input id="masukan-sandi" type="text" class="kolom mt-2 uppercase tracking-widest"
+                   autocapitalize="characters" spellcheck="false" enterkeyhint="go">
+            <button type="submit" class="tombol-utama mt-3 w-full">Buka Segel</button>
+          </form>
+
+          <p id="pesan-gerbang" class="pesan mt-4 text-center" role="status" aria-live="polite"></p>
+        </div>
+
+        <!-- ---------- Keadaan: TERBUKA & TERSINGKAP ---------- -->
+        <article id="blok-lore" hidden class="mt-8">
+          <h3 id="lore-judul" class="font-judul text-2xl font-semibold leading-snug"></h3>
+          <div id="lore-isi" class="mt-3 space-y-4 text-[17px] leading-relaxed first-letter:float-left"></div>
+        </article>
+
+        <figure id="blok-relikui" hidden class="mt-8">
+          <div class="relative aspect-[4/3] overflow-hidden border-[6px] border-[#fbf6ea] bg-perkamen-tua shadow-lembar ring-1 ring-sepia/30">
+            <img id="relikui-gambar" class="h-full w-full object-cover sepia-[.3]" loading="lazy" decoding="async" alt="">
+            <div id="relikui-pengganti" hidden
+                 class="absolute inset-0 flex flex-col items-center justify-center bg-perkamen-tua p-6 text-center text-tinta-samar">
+              <span class="font-judul text-4xl" aria-hidden="true">✦</span>
+              <span class="mt-2 italic">Foto relikui belum ditempelkan pada lembar ini.<br>Amatilah langsung di hadapanmu.</span>
+            </div>
+          </div>
+          <figcaption id="relikui-keterangan" class="mt-2 text-center text-sm italic text-tinta-samar"></figcaption>
+        </figure>
+
+        <!-- ---------- Keadaan: TERBUKA (teka-teki aktif) ---------- -->
+        <div id="blok-teka-teki" hidden class="mt-8">
+          <p class="label-kecil">Observasi Relikui</p>
+          <p id="teka-teki-pertanyaan" class="mt-2 font-judul text-xl leading-snug"></p>
+
+          <form id="form-jawaban" class="mt-4">
+            <label for="masukan-jawaban" class="sr-only">Catatan temuan</label>
+            <textarea id="masukan-jawaban" rows="3" class="kolom resize-none"
+                      placeholder="Tuliskan apa yang kamu amati dan pahami…"></textarea>
+            <button type="submit" class="tombol-utama mt-3 w-full">Catat Temuan</button>
+          </form>
+
+          <p id="pesan-jawaban" class="pesan mt-3" role="status" aria-live="polite"></p>
+
+          <ul id="daftar-petunjuk" class="mt-4 space-y-3" aria-label="Petunjuk dari sejarawan"></ul>
+        </div>
+
+        <!-- ---------- Keadaan: TERSINGKAP ---------- -->
+        <div id="blok-tersingkap" hidden class="mt-8">
+          <p class="label-kecil">Kebenaran yang Tersingkap</p>
+          <p id="penyingkapan-isi" class="mt-2 text-[17px] leading-relaxed"></p>
+
+          <div class="mt-6 flex items-center gap-4 rounded-sm border border-emas/50 bg-perkamen-tua/60 p-4">
+            <span id="lencana-simbol" class="lencana-segel" aria-hidden="true"></span>
+            <div>
+              <p id="lencana-nama" class="font-judul text-xl font-semibold leading-tight"></p>
+              <p id="lencana-sila" class="text-sm italic text-tinta-pudar"></p>
+            </div>
+          </div>
+
+          <a href="#/lencana" class="tombol-kedua mt-5 w-full">Lihat Lemari Lencana</a>
+        </div>
+      </section>
+
+      <!-- ==========================================================
+           VIEW: LEMARI LENCANA
+           ========================================================== -->
+      <section data-view="lencana" hidden>
+        <p class="label-kecil">Lemari Lencana</p>
+        <h2 class="mt-1 font-judul text-3xl font-semibold outline-none">Lencana Nilai</h2>
+        <p class="mt-1 italic text-tinta-samar">Lencana bukan angka. Ia adalah nilai yang kamu bawa pulang dari setiap situs.</p>
+        <ul id="daftar-lencana" class="mt-6 space-y-4"></ul>
+      </section>
+    </main>
+  </div>
+
+  <!-- ============================================================
+       TEMPLAT (diklon oleh app.js; teks diisi via textContent)
+       ============================================================ -->
+  <template id="tpl-kartu-situs">
+    <li>
+      <a data-ref="tautan"
+         class="block rounded-sm border border-sepia/30 bg-perkamen-tua/40 p-4 shadow-sm transition
+                hover:-translate-y-0.5 hover:border-sepia/60 hover:shadow-lembar
+                focus-visible:outline focus-visible:outline-2 focus-visible:outline-segel">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <p data-ref="nomor" class="label-kecil"></p>
+            <h3 data-ref="nama" class="mt-1 font-judul text-2xl font-semibold leading-tight"></h3>
+            <p data-ref="kawasan" class="mt-1 text-sm text-tinta-samar"></p>
+          </div>
+          <span data-ref="stempel" class="stempel"></span>
+        </div>
+        <p data-ref="nilai" class="mt-3 text-sm italic text-tinta-pudar"></p>
+      </a>
+    </li>
+  </template>
+
+  <template id="tpl-kartu-lencana">
+    <li data-ref="kartu"
+        class="flex gap-4 rounded-sm border border-sepia/30 bg-perkamen-tua/40 p-4
+               data-[diperoleh=false]:opacity-60 data-[diperoleh=false]:grayscale">
+      <span data-ref="simbol" class="lencana-segel" aria-hidden="true"></span>
+      <div>
+        <p data-ref="nama" class="font-judul text-xl font-semibold leading-tight"></p>
+        <p data-ref="sila" class="text-sm text-sepia"></p>
+        <p data-ref="makna" class="mt-2 text-[15px] leading-relaxed text-tinta-pudar"></p>
+        <p data-ref="tanggal" class="mt-2 text-xs italic text-tinta-samar"></p>
+      </div>
+    </li>
+  </template>
+
+  <noscript>
+    <p style="padding:1rem;text-align:center;color:#f3e9d2">Jurnal ini memerlukan JavaScript agar dapat dibuka.</p>
+  </noscript>
+
+  <!-- Urutan penting: inti → arsip → antarmuka → sentuhan akhir -->
+  <script src="js/core.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/flourish.js"></script>
+</body>
+</html>
