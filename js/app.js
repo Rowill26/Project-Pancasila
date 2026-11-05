@@ -85,9 +85,23 @@
       else a.removeAttribute('aria-current');
     });
 
+    const kontainer = document.getElementById('jurnal-kontainer');
+    if (kontainer) {
+      if (nama === 'sampul') {
+        // Halaman pertama (Sampul) menggunakan fcover1.jpg
+        kontainer.style.backgroundImage = "url('fcover2.jpg')";
+        kontainer.style.backgroundSize = "cover";
+        kontainer.style.backgroundPosition = "center";
+      } else {
+        // Halaman lainnya (daftar, situs, lencana) menggunakan 2cover.jpg
+        kontainer.style.backgroundImage = "url('2cover.jpg')";
+        kontainer.style.backgroundSize = "cover";
+        kontainer.style.backgroundPosition = "center";
+      }
+    }
+
     global.scrollTo({ top: 0 });
 
-    // Pindahkan fokus ke judul view agar pembaca layar ikut berpindah.
     const judul = $(`[data-view="${nama}"] h1, [data-view="${nama}"] h2`);
     if (judul) { judul.tabIndex = -1; judul.focus({ preventScroll: true }); }
   }
@@ -398,6 +412,43 @@
     Jurnal.hapusSemua();
     global.location.hash = '#/';
   });
+
+  /* ================================================================
+   * INTERAKSI: SERET KE KIRI PADA SAMPUL (MEMBALIK BUKU)
+   * ================================================================ */
+  let titikAwalX = 0;
+  const sampulEl = document.querySelector('[data-view="sampul"]');
+  
+  if (sampulEl) {
+    // Dukungan layar sentuh (Mobile)
+    sampulEl.addEventListener('touchstart', (e) => {
+      titikAwalX = e.touches[0].clientX;
+    }, { passive: true });
+
+    sampulEl.addEventListener('touchend', (e) => {
+      let selisihX = e.changedTouches[0].clientX - titikAwalX;
+      // Jika diseret ke kiri lebih dari 50 piksel, buka halaman daftar
+      if (selisihX < -50) {
+        global.location.hash = '#/daftar';
+      }
+    }, { passive: true });
+
+    // Dukungan tetikus (Desktop Mouse Drag)
+    let isMouseDown = false;
+    sampulEl.addEventListener('mousedown', (e) => {
+      isMouseDown = true;
+      titikAwalX = e.clientX;
+    });
+
+    sampulEl.addEventListener('mouseup', (e) => {
+      if (!isMouseDown) return;
+      isMouseDown = false;
+      let selisihX = e.clientX - titikAwalX;
+      if (selisihX < -50) {
+        global.location.hash = '#/daftar';
+      }
+    });
+  }
 
   /* ================================================================
    * INISIALISASI

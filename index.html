@@ -100,7 +100,7 @@
   <!-- ============================================================
        JURNAL (bingkai utama, mobile-first; di desktop tampil seperti buku)
        ============================================================ -->
-  <div class="mx-auto min-h-screen max-w-md tekstur-perkamen shadow-lembar sm:my-8 sm:min-h-[85vh] sm:rounded-sm">
+  <div id="jurnal-kontainer" class="mx-auto min-h-screen max-w-md tekstur-perkamen shadow-lembar sm:my-8 sm:min-h-[85vh] sm:rounded-sm">
 
     <!-- Kepala jurnal -->
     <header class="sticky top-0 z-20 flex items-center justify-between border-b border-sepia/30 bg-perkamen/95 px-5 py-3 backdrop-blur">
@@ -118,22 +118,33 @@
 
     <main id="panggung" class="px-5 pb-16 pt-6">
 
-      <!-- ==========================================================
+<!-- ==========================================================
            VIEW: SAMPUL (prolog)
            ========================================================== -->
-      <section data-view="sampul" class="flex min-h-[78vh] flex-col items-center justify-center text-center">
-        <p class="text-xs uppercase tracking-[0.35em] text-tinta-samar">Arsip Peninggalan · Surakarta</p>
-        <h1 class="mt-4 font-judul text-5xl font-semibold leading-none outline-none">Babad<br>Surakarta</h1>
-        <p class="mt-3 font-judul text-xl italic text-sepia">Jejak yang Hilang</p>
-        <div class="my-8 h-px w-24 bg-sepia/40" aria-hidden="true"></div>
+      <section data-view="sampul" class="flex min-h-[78vh] flex-col justify-center text-center pl-20 sm:pl-24">
+        <h1 class="mt-4 font-judul text-7xl font-semibold leading-none outline-none text-[#f3e9d2]">Babad<br>Surakarta</h1>
+        <p class="mt-3 font-judul text-xl italic text-emas">Jejak yang Hilang</p>
+
+        <p class="mt-12 font-judul text-base italic tracking-wide text-[#f3e9d2]/90 animate-pulse">
+          ← Seret ke kiri untuk membuka lembaran
+        </p>
+      </section>
+
+<!-- ==========================================================
+           VIEW: PENGANTAR / PROLOG (setelah sampul dibuka)
+           ========================================================== -->
+      <section data-view="pengantar" hidden class="py-6">
+        <p class="label-kecil">Prolog</p>
+        <h2 class="mt-1 font-judul text-3xl font-semibold outline-none">Kata Pengantar</h2>
+        <div class="my-6 h-px w-16 bg-sepia/40" aria-hidden="true"></div>
 
         <div class="space-y-4 text-left text-[17px] leading-relaxed text-tinta-pudar">
           <p>Jurnal ini sampai di tanganmu tanpa nama pemilik. Sampulnya lapuk, halamannya nyaris kosong. Hanya satu baris tinta yang tersisa: <em>kebenaran kota ini tidak tersimpan di buku, melainkan pada batu, kayu, dan warna yang masih berdiri.</em></p>
           <p>Sebagai Peneliti penerusnya, datangilah setiap situs, amati relikuinya dengan saksama, dan catat temuanmu hingga lembar-lembar ini kembali bersuara.</p>
         </div>
 
-        <a href="#/daftar" class="tombol-utama mt-10 w-full">Buka Jurnal</a>
-        <p class="mt-5 text-sm italic text-tinta-samar">Penelusuran ini memerlukan izin lokasi pada ponselmu.</p>
+        <a href="#/daftar" class="tombol-utama mt-10 w-full">Buka Indeks Lembar</a>
+        <p class="mt-5 text-center text-sm italic text-tinta-samar">Penelusuran ini memerlukan izin lokasi pada ponselmu.</p>
       </section>
 
       <!-- ==========================================================
