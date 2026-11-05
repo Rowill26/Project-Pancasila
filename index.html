@@ -123,10 +123,10 @@
            ========================================================== -->
       <section data-view="sampul" class="flex min-h-[78vh] flex-col justify-center text-center pl-20 sm:pl-24">
         <h1 class="mt-4 font-judul text-7xl font-semibold leading-none outline-none text-[#f3e9d2]">Babad<br>Surakarta</h1>
-        <p class="mt-3 font-judul text-xl italic text-emas">Jejak yang Hilang</p>
+        <p class="mt-3 font-judul text-2xl italic text-[#f3e9d2]">Jejak yang Hilang</p>
 
         <p class="mt-12 font-judul text-base italic tracking-wide text-[#f3e9d2]/90 animate-pulse">
-          ← Seret ke kiri untuk membuka lembaran
+          ⬅ Swipe ke kiri untuk membuka lembaran
         </p>
       </section>
 
@@ -162,13 +162,16 @@
 
         <ol id="daftar-situs" class="mt-6 space-y-4"></ol>
 
-        <div class="mt-12 border-t border-dashed border-sepia/40 pt-5 text-center">
-          <button id="tombol-hapus-jurnal" type="button"
-                  class="text-sm italic text-tinta-samar underline decoration-dotted underline-offset-4 hover:text-segel">
-            Mulai Ulang Penelusuran
-          </button>
-        </div>
-      </section>
+        <div class="mt-0 pt-0 text-center relative z-10">
+  <!-- Kita beri relative dan -top-6 (minus 6) agar tombolnya melayang ke atas -->
+  <button id="tombol-hapus-jurnal" type="button"
+          class="relative top-14 text-xl italic text-tinta underline decoration-dotted underline-offset-4 hover:text-segel pb-2 inline-block">
+    Mulai Ulang Penelusuran
+  </button>
+  
+  <!-- Garis putus-putusnya kita taruh di bawah tombol -->
+  <div class="border-t border-dashed border-sepia/40 w-full mt-1" aria-hidden="true"></div>
+</div>
 
       <!-- ==========================================================
            VIEW: SITUS (teka-teki aktif)
