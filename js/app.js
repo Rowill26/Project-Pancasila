@@ -89,12 +89,12 @@
     if (kontainer) {
       if (nama === 'sampul') {
         // Halaman pertama (Sampul) menggunakan fcover1.jpg
-        kontainer.style.backgroundImage = "url('fcover2.jpg')";
+        kontainer.style.backgroundImage = "url('assets/wallpaper/fcover2.jpg')";
         kontainer.style.backgroundSize = "cover";
         kontainer.style.backgroundPosition = "center";
       } else {
         // Halaman lainnya (daftar, situs, lencana) menggunakan 2cover.jpg
-        kontainer.style.backgroundImage = "url('2cover.jpg')";
+        kontainer.style.backgroundImage = "url('assets/wallpaper/2cover.jpg')";
         kontainer.style.backgroundSize = "cover";
         kontainer.style.backgroundPosition = "center";
       }

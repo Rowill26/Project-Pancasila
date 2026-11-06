@@ -260,14 +260,14 @@ dialog.upacara[open] .upacara-tahap {
 .tekstur-perkamen {
   background-color: #f3e9d2;
   /* Default background for inner pages (e.g., cover4.jpg) */
-  background-image: url('cover4.jpg'), radial-gradient(circle at 18% 12%, rgba(255,255,255,.55), transparent 45%);
+  background-image: url('/assets/wallpaper/2cover.jpg'), radial-gradient(circle at 18% 12%, rgba(255,255,255,.55), transparent 45%);
   background-size: cover;
   background-position: center;
 }
 
 /* Background specifically for the landing / first page view (e.g., fcover.jpg) */
 .mx-auto:has([data-view="sampul"]:not([hidden])) {
-  background-image: url('fcover.jpg'), radial-gradient(circle at 18% 12%, rgba(255,255,255,.55), transparent 45%);
+  background-image: url('/assets/wallpaper/fcover2.jpg'), radial-gradient(circle at 18% 12%, rgba(255,255,255,.55), transparent 45%);
   background-size: cover;
   background-position: center;
 }

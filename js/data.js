@@ -10,8 +10,8 @@
  *    I   Pura Mangkunegaran        → Sila ke-1  Lencana Kesucian Batin
  *    II  Alun-Alun Lor (Pepe)      → Sila ke-4  Lencana Suara Rakyat
  *    III Masjid Agung (Pagongan)   → Sila ke-3  Lencana Harmoni Budaya
- *    IV  Benteng Vastenburg        → Sila ke-2  Lencana Kewaspadaan
- *    V   Pasar Gede Hardjonagoro   → Sila ke-5  Lencana Kesetaraan
+ *    IV  Monumen Pers Nasional     → Sila ke-2  Lencana Kehormatan
+ *    V   Taman Sriwedari           → Sila ke-5  Lencana Kesetaraan
  *
  *  Data sengaja dipisah dari logika (core.js) agar situs baru dapat
  *  ditambahkan cukup dengan menyalin satu objek di array ARSIP.
@@ -204,89 +204,89 @@
     },
 
     /* ==============================================================
-     * LEMBAR IV — BENTENG VASTENBURG (Sila ke-2)
+     * LEMBAR IV — MONUMEN PERS NASIONAL (Sila ke-2)
      * ============================================================== */
     {
-      id: 'benteng-vastenburg',
+      id: 'monumen-pers',
       urutan: 4,
-      nama: 'Benteng Vastenburg',
-      kawasan: 'Jl. Jenderal Sudirman, Kedung Lumbu, Pasar Kliwon',
-      koordinat: { lat: -7.570300, lng: 110.829000 }, // DUMMY — sesuaikan ke gerbang benteng
+      nama: 'Monumen Pers Nasional',
+      kawasan: 'Jl. Gajah Mada, Kauman, Surakarta',
+      koordinat: { lat: -7.566300, lng: 110.818138 }, // PERKIRAAN — sesuaikan ke pintu utama
       radius: 100,
-      sandiRelikui: 'VASTENBURG',
+      sandiRelikui: 'SASANASOEKA',
 
-      adab: 'Benteng ini adalah cagar budaya yang menyimpan luka sejarah. Jangan memanjat dinding atau masuk ke area yang ditutup, dan biarkan batanya bercerita apa adanya.',
+      adab: 'Museum ini menyimpan kertas rapuh berusia puluhan hingga ratusan tahun. Jangan menyentuh koleksi, matikan lampu kilat kamera, dan ikuti arahan petugas.',
 
       lore: {
-        judul: 'Mata yang Tak Pernah Terpejam',
+        judul: 'Gedung yang Memberi Suara',
         paragraf: [
-          'Benteng ini didirikan pada 1745 atas perintah Gubernur Jenderal Baron van Imhoff. Nama aslinya De Grootmoedigheid, Kemurahan Hati. Sebuah nama yang manis, terlalu manis untuk dinding tebal yang dikelilingi parit pertahanan.',
-          'Lihatlah ke mana benteng ini menghadap. Bukan ke arah musuh dari luar kota, melainkan lurus ke jantung Keraton Kasunanan. Dari balik dinding ini, garnisun Belanda dapat membaca setiap gerak di istana: siapa yang datang, siapa yang berkumpul, dan siapa yang mulai berani bermimpi tentang kebebasan.'
+          'Gedung berpilar putih ini dibangun pada 1918 atas prakarsa Mangkunegara VII sebagai Societeit Sasana Soeka, tempat kaum terpelajar berkumpul. Puluhan tahun kemudian ruang yang sama menjadi saksi sejarah: pada 9 Februari 1946 para wartawan Indonesia berhimpun di sini dan mendirikan Persatuan Wartawan Indonesia (PWI).',
+          'Di dalamnya tersimpan koran dan majalah dari berbagai zaman, juga kisah pers perjuangan seperti Medan Prijaji (1907). Tirto Adhi Soerjo menjadikannya tempat rakyat kecil mengadukan perlakuan sewenang-wenang. Kata-kata dipakai untuk membela martabat manusia ketika hukum kolonial memperlakukan sesama tidak setara.'
         ]
       },
 
       relikui: {
-        src: 'assets/relikui/peta-vastenburg.jpg',
-        alt: 'Peta lama kota Surakarta yang memperlihatkan Benteng Vastenburg berhadapan dengan Keraton Kasunanan',
-        keterangan: 'Relikui IV · Peta letak Benteng Vastenburg dan Keraton Kasunanan'
+        src: 'assets/relikui/monumen-pers.jpg',
+        alt: 'Gedung Monumen Pers Nasional di Surakarta',
+        keterangan: 'Relikui IV · Gedung bekas Societeit Sasana Soeka'
       },
 
       tekaTeki: {
-        pertanyaan: 'Bentangkan peta itu dan tarik garis dari benteng menuju selatan. Garis itu jatuh tepat di keraton. Bila benteng ini tak pernah dibangun untuk menahan musuh dari luar, untuk apakah sesungguhnya ia didirikan?',
-        kataKunci: ['pengawasan', 'mengawasi', 'diawasi', 'mata mata', 'memata matai', 'kontrol', 'mengontrol', 'intimidasi', 'mengintimidasi'],
+        pertanyaan: 'Telusuri ruang pamer koran lama dan baca kembali kisah di lembar ini. Apa nama surat kabar yang dipimpin Tirto Adhi Soerjo sebagai suara bagi rakyat yang diperlakukan tidak adil?',
+        kataKunci: ['medan prijaji', 'prijaji', 'medan priyayi', 'medan priaji'],
         petunjuk: [
-          { setelah: 2, teks: 'Sebuah benteng tidak selalu melindungi. Terkadang ia hanya menatap, dan tatapan itu sudah cukup untuk membuat orang takut.' },
-          { setelah: 4, teks: 'Pikirkan seorang penjaga yang tak pernah tidur, matanya tertuju pada satu rumah saja.' }
+          { setelah: 2, teks: 'Kata pertamanya berarti lapangan atau arena tempat orang berkumpul dan bersuara.' },
+          { setelah: 4, teks: 'Kata keduanya merujuk pada kaum priyayi, tetapi koran ini terbuka bagi seluruh bangsa yang terperintah.' }
         ],
-        penyingkapan: 'Pengawasan. Kemurahan Hati hanyalah topeng bahasa bagi sebuah menara pengintai. Kekuasaan yang terus mengawasi dan menekan merampas martabat manusia yang diawasinya. Sila kedua mengajarkan kebalikannya: kemanusiaan yang adil dan beradab, serta kewaspadaan agar kata-kata indah tidak lagi menyamarkan penindasan.'
+        penyingkapan: 'Medan Prijaji. Pers yang jujur adalah bentuk keadaban: ia memberi suara kepada mereka yang tak didengar dan menolak memperlakukan manusia sebagai golongan rendah. Itulah napas sila kedua, kemanusiaan yang adil dan beradab.'
       },
 
       lencana: {
-        id: 'lencana-kewaspadaan',
-        nama: 'Lencana Kewaspadaan',
+        id: 'lencana-kehormatan',
+        nama: 'Lencana Kehormatan',
         sila: 'Sila ke-2',
         silaTeks: 'Kemanusiaan yang Adil dan Beradab',
-        makna: 'Dianugerahkan kepada Peneliti yang mampu membaca kuasa di balik nama yang manis, dan menjaga martabat manusia dari pengawasan yang menindas.',
-        simbol: '⌖'
+        makna: 'Dianugerahkan kepada Peneliti yang memahami bahwa kata-kata yang jujur menjaga martabat setiap manusia.',
+        simbol: '✎'
       }
     },
-
+    
     /* ==============================================================
-     * LEMBAR V — PASAR GEDE HARDJONAGORO (Sila ke-5)
+     * LEMBAR V — TAMAN SRIWEDARI (Sila ke-5)
      * ============================================================== */
     {
-      id: 'pasar-gede',
+      id: 'taman-sriwedari',
       urutan: 5,
-      nama: 'Pasar Gede Hardjonagoro',
-      kawasan: 'Jl. Urip Sumoharjo, Sudiroprajan, Jebres',
-      koordinat: { lat: -7.568700, lng: 110.831200 }, // DUMMY — sesuaikan ke gerbang utama
-      radius: 100,
-      sandiRelikui: 'KARSTEN',
+      nama: 'Taman Sriwedari',
+      kawasan: 'Jl. Slamet Riyadi, Laweyan, Surakarta',
+      koordinat: { lat: -7.568200, lng: 110.812808 }, // PERKIRAAN — sesuaikan ke gerbang taman
+      radius: 120,
+      sandiRelikui: 'SRIWEDARI',
 
-      adab: 'Pasar ini masih menjadi nadi kehidupan warga. Jangan menghalangi lalu lintas pedagang dan pembeli, dan mintalah izin sebelum memotret siapa pun.',
+      adab: 'Kawasan ini ramai dan dipakai bersama. Jaga kebersihan, beri jalan bagi penonton dan pengunjung lain, dan hormati para seniman yang sedang berlatih atau tampil.',
 
       lore: {
-        judul: 'Satu Atap untuk Semua',
+        judul: 'Taman Raja yang Dibagikan',
         paragraf: [
-          'Pasar ini rampung pada 1930, dirancang oleh arsitek Belanda Herman Thomas Karsten. Atapnya meminjam bentuk rumah Jawa dengan tritisan lebar untuk menahan hujan deras, sementara tata ruangnya simetris dan tegas khas Eropa. Ia berdiri di simpul kota, menyambungkan kawasan pecinan Balong dengan lingkungan keraton.',
-          'Di zaman ketika Hindia Belanda memilah manusia menurut ras dan kelas, di sini pribumi, Tionghoa, dan Eropa berdiri di lantai yang sama, menawar di lapak yang sama, dan berteduh di bawah atap yang sama.'
+          'Pakubuwono X membangun taman ini sekitar 1899 hingga 1901. Namanya mengambil taman kahyangan dalam dunia pewayangan, tempat keindahan berkumpul. Pada mulanya ia adalah ruang rehat keluarga raja, lalu perlahan terbuka bagi masyarakat luas.',
+          'Dari taman inilah kesenian keraton mengalir ke rakyat. Gedung wayang orangnya masih menjadi panggung bagi seniman dan penonton dari berbagai lapisan. Pada 1948, stadion di kawasan ini menjadi tuan rumah pesta olahraga nasional yang pertama, untuk mempertemukan atlet dari berbagai daerah.'
         ]
       },
 
       relikui: {
-        src: 'assets/relikui/gerbang-pasar-gede.jpg',
-        alt: 'Gerbang utama Pasar Gede Hardjonagoro dengan tulisan aksara Jawa dan huruf Latin',
-        keterangan: 'Relikui V · Gerbang utama Pasar Gede Hardjonagoro'
+        src: 'assets/relikui/sriwedari.jpg',
+        alt: 'Gerbang dan taman Sriwedari di Surakarta',
+        keterangan: 'Relikui V · Kawasan Taman Sriwedari'
       },
 
       tekaTeki: {
-        pertanyaan: 'Amati gerbang utamanya: aksara Jawa dan huruf Latin berdiri dalam satu bingkai simetris. Di masa ketika manusia dipisah-pisahkan menurut ras dan kelas, apa yang hendak dibangun Karsten di bawah satu atap ini?',
-        kataKunci: ['persatuan', 'kesetaraan', 'setara', 'bersatu', 'pembauran', 'peleburan', 'kesamaan'],
+        pertanyaan: 'Pada 1948 stadion di kawasan ini menjadi tuan rumah pesta olahraga pertama bangsa kita, yang mempertemukan atlet dari berbagai daerah. Apa nama ajang itu?',
+        kataKunci: ['pon', 'pekan olahraga nasional', 'pekan olahraga', 'olahraga nasional'],
         petunjuk: [
-          { setelah: 2, teks: 'Perhatikan bahwa tak satu pun tulisan di gerbang itu diletakkan lebih tinggi daripada yang lain.' },
-          { setelah: 4, teks: 'Di dalam pasar, tidak ada kursi khusus bagi tuan, dan tidak ada lorong khusus bagi hamba.' }
+          { setelah: 2, teks: 'Ajang ini diikuti atlet dari seluruh provinsi, bukan hanya dari kota raja.' },
+          { setelah: 4, teks: 'Singkatannya tiga huruf, dan hingga kini digelar berkala setiap empat tahun.' }
         ],
-        penyingkapan: 'Kesetaraan, dan persatuan yang lahir darinya. Karsten tidak sekadar membangun tempat berjual beli, melainkan ruang yang diam-diam menghapus sekat kelas sosial. Keadilan sosial, sebagaimana sila kelima, bermula dari hal sederhana: semua orang berhak berdiri di lantai yang sama.'
+        penyingkapan: 'Pekan Olahraga Nasional (PON). Taman yang mulanya milik raja kini menjadi milik bersama: seni, olahraga, dan hiburan dapat dinikmati banyak orang. Itulah keadilan sosial: keindahan dan kesempatan tidak berhenti di pagar segelintir orang.'
       },
 
       lencana: {
@@ -294,10 +294,11 @@
         nama: 'Lencana Kesetaraan',
         sila: 'Sila ke-5',
         silaTeks: 'Keadilan Sosial bagi Seluruh Rakyat Indonesia',
-        makna: 'Dianugerahkan kepada Peneliti yang memahami bahwa keadilan sosial dimulai ketika tidak ada lagi manusia yang ditempatkan lebih rendah daripada yang lain.',
-        simbol: '❂'
+        makna: 'Dianugerahkan kepada Peneliti yang memahami bahwa ruang, seni, dan kesempatan semestinya dapat dinikmati oleh semua.',
+        simbol: '❦'
       }
     }
+    
   ];
 
   /* ----------------------------------------------------------------
